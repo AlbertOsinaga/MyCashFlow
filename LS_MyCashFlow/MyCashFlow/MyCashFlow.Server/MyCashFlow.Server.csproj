@@ -210,6 +210,10 @@
       <DependentUpon>Cuentas.lsml</DependentUpon>
     </LightSwitchModel>
     <LightSwitchModel Include="DataSources\ApplicationData\TipoCuentas.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\TasaCambios.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\TasaCambiosXMoneda.lsml">
+      <DependentUpon>TasaCambios.lsml</DependentUpon>
+    </LightSwitchModel>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -48,6 +48,9 @@
     <ApplicationCommand
       Name="ScreenCommandShowTipoCuentasGrid"
       Target="!module/Methods[ShowTipoCuentasGrid]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowTasaCambiosGrid"
+      Target="!module/Methods[ShowTasaCambiosGrid]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -69,6 +72,9 @@
       <ApplicationNavigationLink
         Name="ParametrosGrid"
         Command="!module/Commands[ScreenCommandShowParametrosGrid]" />
+      <ApplicationNavigationLink
+        Name="TasaCambiosGrid"
+        Command="!module/Commands[ScreenCommandShowTasaCambiosGrid]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

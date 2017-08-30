@@ -41,7 +41,7 @@
         PropertyType=":String?">
         <EntityProperty.Attributes>
           <MaxLength
-            Value="25" />
+            Value="50" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty

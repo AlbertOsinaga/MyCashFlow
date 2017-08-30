@@ -40,4 +40,16 @@
         Target="ServiceInterface:Cuenta_TipoCuenta" />
     </Association.Attributes>
   </Association>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:TasaCambio" />
+    </EntityType.Attributes>
+  </EntityType>
+  <Association>
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:TasaCambio_Moneda" />
+    </Association.Attributes>
+  </Association>
 </Application>

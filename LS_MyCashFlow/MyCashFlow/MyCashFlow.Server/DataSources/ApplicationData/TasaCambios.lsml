@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Moneda">
+    Name="TasaCambio">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -26,39 +26,39 @@
           <NotSearchable />
         </KeyProperty.Attributes>
       </KeyProperty>
+      <NavigationProperty
+        Name="Moneda"
+        Association="TasaCambio_Moneda"
+        FromEnd="TasaCambio"
+        ToEnd="Moneda" />
       <EntityProperty
-        Name="Nab"
-        PropertyType=":String">
+        Name="Fecha"
+        PropertyType=":DateTime">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="10" />
-          <DisplayName
-            Value="Nombre Abreviado" />
+          <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="Nombre"
-        PropertyType=":String?">
+        Name="Tasa"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money">
         <EntityProperty.Attributes>
-          <MaxLength
-            Value="255" />
-          <Description
-            Value="Nombre Largo" />
-          <DisplayName
-            Value="Nombre Largo" />
+          <Required />
+          <NotSearchable />
+          <DecimalConstraint
+            Precision="18"
+            Scale="6" />
+          <Attribute
+            Class="Microsoft.LightSwitch.Extensions:@MoneyProperties">
+            <Property
+              Name="DecimalDigits"
+              Value="6" />
+            <Property
+              Name="IsFormatted"
+              Value="False" />
+          </Attribute>
         </EntityProperty.Attributes>
       </EntityProperty>
-      <NavigationProperty
-        Name="Cuentas"
-        Association="Cuenta_Moneda"
-        FromEnd="Moneda"
-        ToEnd="Cuenta" />
-      <NavigationProperty
-        Name="TasaCambios"
-        Association="TasaCambio_Moneda"
-        FromEnd="Moneda"
-        ToEnd="TasaCambio" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -117,14 +117,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="Monedas"
+      Name="TasaCambios"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Moneda" />
+      EntityType="TasaCambio" />
     <QueryOperation
-      Name="Monedas_Single"
-      ReturnType="Moneda">
+      Name="TasaCambios_Single"
+      ReturnType="TasaCambio">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -150,7 +150,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Monedas" />
+            Member="TasaCambios" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -163,8 +163,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="Monedas_SingleOrDefault"
-      ReturnType="Moneda">
+      Name="TasaCambios_SingleOrDefault"
+      ReturnType="TasaCambio">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -190,7 +190,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Monedas" />
+            Member="TasaCambios" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -202,105 +202,20 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
-    <AssociationSet
-      Name="Cuenta_Monedas"
-      Association="Cuenta_Moneda">
-      <AssociationSetEnd
-        Name="Cuenta"
-        EntitySet="Cuentas" />
-      <AssociationSetEnd
-        Name="Moneda"
-        EntitySet="Monedas" />
-    </AssociationSet>
-    <AssociationSet
-      Name="TasaCambio_Monedas"
-      Association="TasaCambio_Moneda">
-      <AssociationSetEnd
-        Name="TasaCambio"
-        EntitySet="TasaCambios" />
-      <AssociationSetEnd
-        Name="Moneda"
-        EntitySet="Monedas" />
-    </AssociationSet>
   </EntityContainer>
-  <Association
-    Name="Cuenta_Moneda">
-    <AssociationEnd
-      Name="Cuenta"
-      Multiplicity="Many"
-      EntityType="Cuenta" />
-    <AssociationEnd
-      Name="Moneda"
-      Multiplicity="One"
-      EntityType="Moneda">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
   <DataService
     Name="ApplicationDataMapping">
     <DataService.Attributes>
       <Partial />
     </DataService.Attributes>
-    <AssociationSetMapping
-      AssociationSet="Cuenta_Monedas">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="Cuenta_Monedas" />
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Cuenta_Monedas]/Members[Cuenta]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Cuenta_Moneda" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Cuenta_Monedas]/Members[Moneda]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
-    <AssociationSetMapping
-      AssociationSet="TasaCambio_Monedas">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="TasaCambio_Monedas" />
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[TasaCambio_Monedas]/Members[TasaCambio]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="TasaCambio_Moneda" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[TasaCambio_Monedas]/Members[Moneda]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
+    <EntitySetMapping
+      EntitySet="TasaCambios">
+      <EntitySetMapping.Attributes>
+        <SsdlForeignKeyProperty
+          Name="TasaCambio_Moneda"
+          Nullable="False"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
   </DataService>
-  <Association
-    Name="TasaCambio_Moneda">
-    <AssociationEnd
-      Name="TasaCambio"
-      Multiplicity="Many"
-      EntityType="TasaCambio" />
-    <AssociationEnd
-      Name="Moneda"
-      Multiplicity="One"
-      EntityType="Moneda">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
 </ServiceApplication>

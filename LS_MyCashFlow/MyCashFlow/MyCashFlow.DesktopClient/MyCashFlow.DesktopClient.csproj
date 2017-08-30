@@ -243,6 +243,7 @@
     <LightSwitchModel Include="Screens\MonedasGrid.lsml" />
     <LightSwitchModel Include="Screens\CuentasGrid.lsml" />
     <LightSwitchModel Include="Screens\TipoCuentasGrid.lsml" />
+    <LightSwitchModel Include="Screens\TasaCambiosGrid.lsml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\interact_32.png" />
