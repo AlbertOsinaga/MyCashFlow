@@ -234,6 +234,7 @@
     <LightSwitchModel Include="Properties\Client.lsml">
       <ProjectCritical>true</ProjectCritical>
     </LightSwitchModel>
+    <LightSwitchModel Include="Properties\ApplicationData\TipoCuentas.lsml" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
     <ClientResource Include="Properties\Config.xml" />
@@ -241,6 +242,7 @@
     <LightSwitchModel Include="Screens\ParametrosGrid.lsml" />
     <LightSwitchModel Include="Screens\MonedasGrid.lsml" />
     <LightSwitchModel Include="Screens\CuentasGrid.lsml" />
+    <LightSwitchModel Include="Screens\TipoCuentasGrid.lsml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\interact_32.png" />

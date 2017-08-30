@@ -34,4 +34,10 @@
         Target="ServiceInterface:Cuenta_Moneda" />
     </Association.Attributes>
   </Association>
+  <Association>
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:Cuenta_TipoCuenta" />
+    </Association.Attributes>
+  </Association>
 </Application>

@@ -5,12 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="CuentasGrid">
+    Name="TipoCuentasGrid">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="ApplicationData" />
       <DisplayName
-        Value="Cuentas" />
+        Value="Tipos de Cuentas" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -23,24 +23,37 @@
           <ContentItem
             Name="grid"
             Kind="Collection"
-            DataType="CollectionView$Cuenta">
+            DataType="CollectionView$TipoCuenta">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="CuentasGrid/Properties[Cuentas]" />
+                    Member="TipoCuentasGrid/Properties[TipoCuentas]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
               Name="RowTemplate"
               Kind="Details"
-              DataType="Cuenta">
+              DataType="TipoCuenta">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
+              <ContentItem
+                Name="Tipo"
+                Kind="Value"
+                DataType=":String">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="TipoCuenta/Properties[Tipo]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
               <ContentItem
                 Name="Nombre"
                 Kind="Value"
@@ -49,109 +62,21 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Cuenta/Properties[Nombre]" />
+                        Member="TipoCuenta/Properties[Nombre]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Numero"
-                Kind="Value"
-                DataType=":String?">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Cuenta/Properties[Numero]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Moneda"
-                Kind="Details"
-                DataType="Moneda">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Cuenta/Properties[Moneda]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-                <ContentItem
-                  Name="RowTemplate1"
-                  Kind="Details"
-                  DataType="Moneda">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression />
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-              </ContentItem>
-              <ContentItem
-                Name="TipoCuenta"
-                Kind="Details"
-                DataType="TipoCuenta">
-                <ContentItem.Attributes>
-                  <DisplayName
-                    Value="Tipo" />
-                </ContentItem.Attributes>
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Cuenta/Properties[TipoCuenta]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-                <ContentItem
-                  Name="TipoCuenta1"
-                  Kind="Details"
-                  DataType="TipoCuenta">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression />
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
-                </ContentItem>
-              </ContentItem>
-              <ContentItem
-                Name="Saldo"
-                Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:Money">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Cuenta/Properties[Saldo]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-                <ContentItem.PropertySources>
-                  <ControlPropertySource
-                    Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[TextAlignment]">
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <ConstantExpression
-                          Value="Right"
-                          ResultType=":String" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ControlPropertySource>
-                </ContentItem.PropertySources>
               </ContentItem>
             </ContentItem>
             <ContentItem.CommandItems>
               <ContentItem
-                Name="Cuentas_AddAndEditNew"
+                Name="TipoCuentas_AddAndEditNew"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="CuentasGrid/Properties[Cuentas]" />
+                        Member="TipoCuentasGrid/Properties[TipoCuentas]" />
                       <CallExpression
                         Target="AddAndEditNew" />
                     </ChainExpression>
@@ -159,13 +84,13 @@
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="Cuentas_EditSelected"
+                Name="TipoCuentas_EditSelected"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="CuentasGrid/Properties[Cuentas]" />
+                        Member="TipoCuentasGrid/Properties[TipoCuentas]" />
                       <CallExpression
                         Target="EditSelected" />
                     </ChainExpression>
@@ -173,13 +98,13 @@
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="Cuentas_DeleteSelected"
+                Name="TipoCuentas_DeleteSelected"
                 Kind="Command">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="CuentasGrid/Properties[Cuentas]" />
+                        Member="TipoCuentasGrid/Properties[TipoCuentas]" />
                       <CallExpression
                         Target="DeleteSelected" />
                     </ChainExpression>
@@ -219,7 +144,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CuentasGrid/Methods[Save]" />
+                    Target="TipoCuentasGrid/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -231,7 +156,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CuentasGrid/Methods[Refresh]" />
+                    Target="TipoCuentasGrid/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -271,20 +196,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Cuentas"
+        Name="TipoCuentas"
         PageSize="45"
-        PropertyType="CollectionView$Cuenta">
+        PropertyType="CollectionView$TipoCuenta">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="CuentasQuery"
-            ReturnType="Cuenta*">
+            Name="TipoCuentasQuery"
+            ReturnType="TipoCuenta*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="ApplicationData/Members[CuentasXNombre]" />
+                  Member="ApplicationData/Members[TipoCuentas]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -292,7 +217,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="CuentasGrid/Properties[Cuentas]/Query" />
+              Target="TipoCuentasGrid/Properties[TipoCuentas]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -300,10 +225,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowCuentasGrid">
+      Name="ShowTipoCuentasGrid">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="CuentasGrid" />
+          TargetScreen="TipoCuentasGrid" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

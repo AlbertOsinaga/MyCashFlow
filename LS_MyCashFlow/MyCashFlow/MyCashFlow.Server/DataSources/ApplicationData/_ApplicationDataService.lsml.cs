@@ -55,5 +55,20 @@ namespace LightSwitchApplication
         {
             Parametros_Changing(entity);
         }
+
+        void TipoCuentas_Changing(TipoCuenta entity)
+        {
+            entity.Tipo = entity.Tipo.Trim().ToUpper();
+        }
+
+        partial void TipoCuentas_Inserting(TipoCuenta entity)
+        {
+            TipoCuentas_Changing(entity);
+        }
+
+        partial void TipoCuentas_Updating(TipoCuenta entity)
+        {
+            TipoCuentas_Changing(entity);
+        }
     }
 }

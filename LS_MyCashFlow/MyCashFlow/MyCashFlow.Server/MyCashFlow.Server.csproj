@@ -209,6 +209,7 @@
     <LightSwitchModel Include="DataSources\ApplicationData\CuentasXNombre.lsml">
       <DependentUpon>Cuentas.lsml</DependentUpon>
     </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\ApplicationData\TipoCuentas.lsml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

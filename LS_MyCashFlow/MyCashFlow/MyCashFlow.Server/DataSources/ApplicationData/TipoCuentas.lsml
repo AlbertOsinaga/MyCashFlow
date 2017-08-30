@@ -5,9 +5,11 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Cuenta">
+    Name="TipoCuenta">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
+      <DisplayName
+        Value="Tipo" />
     </EntityType.Attributes>
     <EntityType.Methods>
       <EntityMethod
@@ -27,50 +29,29 @@
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
+        Name="Tipo"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="1" />
+          <IncludeInUniqueIndex />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
         Name="Nombre"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
           <MaxLength
-            Value="50" />
-          <IncludeInUniqueIndex />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="Numero"
-        PropertyType=":String?">
-        <EntityProperty.Attributes>
-          <MaxLength
             Value="25" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty
-        Name="Moneda"
-        Association="Cuenta_Moneda"
-        FromEnd="Cuenta"
-        ToEnd="Moneda" />
-      <NavigationProperty
-        Name="TipoCuenta"
+        Name="Cuentas"
         Association="Cuenta_TipoCuenta"
-        FromEnd="Cuenta"
-        ToEnd="TipoCuenta" />
-      <EntityProperty
-        Name="Saldo"
-        PropertyType="Microsoft.LightSwitch.Extensions:Money">
-        <EntityProperty.Attributes>
-          <Required />
-          <NotSearchable />
-          <DecimalConstraint
-            Precision="18"
-            Scale="2" />
-          <Attribute
-            Class="Microsoft.LightSwitch.Extensions:@MoneyProperties">
-            <Property
-              Name="IsFormatted"
-              Value="False" />
-          </Attribute>
-        </EntityProperty.Attributes>
-      </EntityProperty>
+        FromEnd="TipoCuenta"
+        ToEnd="Cuenta" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -129,14 +110,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="Cuentas"
+      Name="TipoCuentas"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Cuenta" />
+      EntityType="TipoCuenta" />
     <QueryOperation
-      Name="Cuentas_Single"
-      ReturnType="Cuenta">
+      Name="TipoCuentas_Single"
+      ReturnType="TipoCuenta">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -162,7 +143,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Cuentas" />
+            Member="TipoCuentas" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -175,8 +156,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="Cuentas_SingleOrDefault"
-      ReturnType="Cuenta">
+      Name="TipoCuentas_SingleOrDefault"
+      ReturnType="TipoCuenta">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -202,7 +183,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Cuentas" />
+            Member="TipoCuentas" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -214,24 +195,58 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
+    <AssociationSet
+      Name="Cuenta_TipoCuentas"
+      Association="Cuenta_TipoCuenta">
+      <AssociationSetEnd
+        Name="Cuenta"
+        EntitySet="Cuentas" />
+      <AssociationSetEnd
+        Name="TipoCuenta"
+        EntitySet="TipoCuentas" />
+    </AssociationSet>
   </EntityContainer>
+  <Association
+    Name="Cuenta_TipoCuenta">
+    <AssociationEnd
+      Name="Cuenta"
+      Multiplicity="Many"
+      EntityType="Cuenta" />
+    <AssociationEnd
+      Name="TipoCuenta"
+      Multiplicity="One"
+      EntityType="TipoCuenta">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
   <DataService
     Name="ApplicationDataMapping">
     <DataService.Attributes>
       <Partial />
     </DataService.Attributes>
-    <EntitySetMapping
-      EntitySet="Cuentas">
-      <EntitySetMapping.Attributes>
-        <SsdlForeignKeyProperty
-          Name="Cuenta_Moneda"
-          Nullable="False"
-          Type="int" />
-        <SsdlForeignKeyProperty
-          Name="Cuenta_TipoCuenta"
-          Nullable="False"
-          Type="int" />
-      </EntitySetMapping.Attributes>
-    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="Cuenta_TipoCuentas">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cuenta_TipoCuentas" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Cuenta_TipoCuentas]/Members[Cuenta]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Cuenta_TipoCuenta" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Cuenta_TipoCuentas]/Members[TipoCuenta]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
 </ServiceApplication>

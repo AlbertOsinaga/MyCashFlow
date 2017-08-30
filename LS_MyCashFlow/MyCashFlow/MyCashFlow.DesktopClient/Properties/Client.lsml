@@ -45,6 +45,9 @@
     <ApplicationCommand
       Name="ScreenCommandShowCuentasGrid"
       Target="!module/Methods[ShowCuentasGrid]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowTipoCuentasGrid"
+      Target="!module/Methods[ShowTipoCuentasGrid]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -55,14 +58,17 @@
           Value="Definiciones" />
       </ApplicationNavigationGroup.Attributes>
       <ApplicationNavigationLink
+        Name="CuentasGrid"
+        Command="!module/Commands[ScreenCommandShowCuentasGrid]" />
+      <ApplicationNavigationLink
         Name="MonedasGrid"
         Command="!module/Commands[ScreenCommandShowMonedasGrid]" />
       <ApplicationNavigationLink
+        Name="TipoCuentasGrid"
+        Command="!module/Commands[ScreenCommandShowTipoCuentasGrid]" />
+      <ApplicationNavigationLink
         Name="ParametrosGrid"
         Command="!module/Commands[ScreenCommandShowParametrosGrid]" />
-      <ApplicationNavigationLink
-        Name="CuentasGrid"
-        Command="!module/Commands[ScreenCommandShowCuentasGrid]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">
